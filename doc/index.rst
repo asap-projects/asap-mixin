@@ -34,7 +34,7 @@ Parts of the documentation
 ==========================
 
 :doc:`mixin <mixin:api>`
---------------------------
+------------------------
   *start here to understand the classes provided by the library and how to use
   them to build your own state machine.*
 

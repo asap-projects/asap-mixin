@@ -123,6 +123,9 @@ html_theme_options = {
 # -- Options for intersphinx extension ---------------------------------------
 
 intersphinx_mapping = {
+    'mixin': (
+        'https://asap-projects.github.io/asap-mixin/asap_mixin/html',
+        '@SPHINX_BUILD_DIR@/asap_mixin/html/objects.inv')
 }
 
 # -- Options for todo extension ----------------------------------------------
