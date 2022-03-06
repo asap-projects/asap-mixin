@@ -4,7 +4,7 @@
 
 [![Build Matrix](https://github.com/abdes/asap/actions/workflows/cmake-build.yml/badge.svg?branch=master)](https://github.com/abdes/asap/actions/workflows/cmake-build.yml)
 
-## [Project Documentation](https://abdes.github.io/asap/)
+## [Project Documentation](https://asap-projects.github.io/asap-mixin/asap_mixin_master/html/)
 
 ## Overview
 
