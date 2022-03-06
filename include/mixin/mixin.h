@@ -4,6 +4,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //===----------------------------------------------------------------------===//
 
+// This implementation is inspired by the talk and implementation initially made
+// by Gašper Ažman for a talk at C++London.
+// https://github.com/atomgalaxy/libciabatta
+
 /*!
  * \file
  *

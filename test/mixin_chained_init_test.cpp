@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //===----------------------------------------------------------------------===//
 
-#include "common/mixin.h"
+#include <mixin/mixin.h>
 
 #include <common/compilers.h>
 
@@ -30,47 +30,40 @@ using testing::IsTrue;
 namespace asap::mixin {
 
 namespace {
-
-//! [Mixin calls other mixin]
-template <typename Base> struct WithLogging : Base {
-  void Log(const std::string &message) const {
-    out << message;
-  }
-  auto LoggerOutput() -> std::string {
-    return out.str();
-  }
-
-private:
-  mutable std::stringstream out;
+struct Argument1 {
+  int a1;
+};
+struct Argument2 {
+  int a2;
 };
 
-template <typename Base> struct Persistence : Base {
-  void Store() const {
-    // self() is provided by Base, so we need to mark it dependent.
-    // this->self() is short and obvious.
-    this->self().Log("storing...");
+template <typename Base> struct Fragment1 : Base {
+  template <typename... Args>
+  Fragment1(Argument1 arg1, int foo, Args &&...args)
+      : Base(std::forward<Args>(args)...), x_{arg1.a1}, y_{foo} {
   }
+  int x_;
+  int y_;
 };
-//! [Mixin calls other mixin]
+
+template <typename Base> struct Fragment2 : Base {
+  template <typename... Args>
+  explicit Fragment2(Argument2 arg2, Args &&...args)
+      : Base(std::forward<Args>(args)...), z_{arg2.a2} {
+  }
+  int z_;
+};
 
 // NOLINTNEXTLINE
-TEST(MixinSelf, UseSelfToAccessOtherMixinInterfaces) {
-  struct Concrete : asap::mixin::Mixin<Concrete, Persistence, WithLogging> {};
+TEST(MixinChainedInit, MixinConstructorForwardsUnusedArgumentsToBase) {
+  struct Composite : Mixin<Composite, Fragment1, Fragment2> {
+    constexpr Composite(Argument1 arg1, int foo, Argument2 arg2)
+        : Mixin(arg1, foo, arg2) {
+    }
+  };
 
-  Concrete concrete;
-  concrete.Store();
-  EXPECT_THAT(concrete.LoggerOutput(), Eq("storing..."));
-}
-
-// NOLINTNEXTLINE
-TEST(MixinSelf, CompositionOrderDoesNotMatter) {
-  //! [Composition order does not matter]
-  struct Concrete1 : Mixin<Concrete1, Persistence, WithLogging> {};
-  struct Concrete2 : Mixin<Concrete2, WithLogging, Persistence> {};
-  //! [Composition order does not matter]
-
-  [[maybe_unused]] Concrete1 concreate_1;
-  [[maybe_unused]] Concrete2 concrete_2;
+  Composite composite{Argument1{1}, 2, Argument2{3}};
+  EXPECT_THAT(composite.x_ + composite.y_ + composite.z_, Eq(1 + 2 + 3));
 }
 
 } // namespace

@@ -10,11 +10,9 @@ ASAP common's documentation
    License <license>
    Version <version>
 
-Welcome! This is the documentation for the *common* module, part of the *asap*
-project. This is a core module on which the other modules depend to get access
-to low level and frequently needed features such as platform/environment
-detection, assertions and C++ language features not consistently provided by 
-all compilers on all platforms.
+Welcome! This is the documentation for the *mixin* module, part of the *asap*
+project. This is a header-only library to provide support for implementing
+mixins in C++.
 
 Parts of the documentation
 ==========================

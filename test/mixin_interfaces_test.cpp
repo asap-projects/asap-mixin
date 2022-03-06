@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //===----------------------------------------------------------------------===//
 
-#include "common/mixin.h"
+#include <mixin/mixin.h>
 
 #include <common/compilers.h>
 
@@ -27,11 +27,16 @@ using testing::NotNull;
 namespace asap::mixin {
 
 namespace {
-// NOLINTBEGIN(cppcoreguidelines-special-member-functions,
-// hicpp-special-member-functions, cppcoreguidelines-virtual-class-destructor)
 //! [Virtual interface]
 struct Interface {
   virtual ~Interface() = default;
+
+  Interface() = default;
+  Interface(const Interface &) = default;
+  Interface(Interface &&) noexcept = default;
+  auto operator=(const Interface &) -> Interface & = default;
+  auto operator=(Interface &&) noexcept -> Interface & = default;
+
   virtual void foo() = 0;
 };
 //! [Virtual interface]
@@ -39,7 +44,7 @@ struct Interface {
 //! [Mixin implements interface]
 template <typename Base> struct ImplementsInterface : Base, Interface {
   template <typename... Args>
-  constexpr ImplementsInterface(Args &&...args)
+  constexpr explicit ImplementsInterface(Args &&...args)
       : Base(static_cast<decltype(args)>(args)...) {
   }
 
@@ -48,9 +53,6 @@ template <typename Base> struct ImplementsInterface : Base, Interface {
   }
 };
 //! [Mixin implements interface]
-
-// NOLINTEND(cppcoreguidelines-special-member-functions,
-// hicpp-special-member-functions, cppcoreguidelines-virtual-class-destructor)
 
 // NOLINTNEXTLINE
 TEST(MixinInterfaces, MixinCanImplementInterface) {
