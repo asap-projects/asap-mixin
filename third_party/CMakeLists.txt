@@ -5,3 +5,16 @@
 # ===-----------------------------------------------------------------------===#
 
 message("=> [third-party modules]")
+
+# Live at Head philosophy. Always use the latest commit in the main branch in
+# your projects.
+
+# ------------------------------------------------------------------------------
+# asap::common
+# ------------------------------------------------------------------------------
+
+FetchContent_Declare(
+  asap_common
+  GIT_REPOSITORY https://github.com/asap-projects/asap-common.git
+  GIT_TAG origin/master)
+FetchContent_MakeAvailable(asap_common)

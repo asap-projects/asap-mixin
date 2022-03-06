@@ -4,3 +4,6 @@
 [submodule "doxygen/doxygen-awesome-css"]
 	path = doxygen/doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "mixin"]
+	path = mixin
+	url = https://github.com/asap-projects/mixin.git

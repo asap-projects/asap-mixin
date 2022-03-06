@@ -52,11 +52,11 @@ npm install -g standard-version
 mkdir _build && cd _build && cmake .. && cmake --build .
 ```
 
-or just use one of the predefined `CMake` presets. Detailed instructions and
-many useful commands are listed
-[here](https://abdes.github.io/asap/master/html/01-getting-started/useful-commands.html).
+or just use one of the predefined `CMake` presets. Detailed instructions are in
+the project documentation, and many useful commands are listed
+[here](https://abdes.github.io/asap/asap_master/html/getting-started/useful-commands.html).
 
-### CMake configurable build options
+## CMake configurable build options
 
 ```cmake
 # Project options
@@ -67,4 +67,18 @@ option(ASAP_WITH_GOOGLE_ASAN    "Instrument code with address sanitizer"        
 option(ASAP_WITH_GOOGLE_UBSAN   "Instrument code with undefined behavior sanitizer"      OFF)
 option(ASAP_WITH_GOOGLE_TSAN    "Instrument code with thread sanitizer"                  OFF)
 option(ASAP_WITH_VALGRIND       "Builds targets with valgrind profilers added"           OFF)
+```
+
+## Making changes to this project
+
+Read the developer guides in the upstream
+[asap](https://abdes.github.io/asap/asap_master/html/)
+project. If you're in a hurry, at least do the following:
+
+Only one time after the project is cloned, do the following:
+
+```bash
+npx husky install
+npm install -g @commitlint/cli @commitlint/config-conventional
+npm install -g standard-version
 ```
