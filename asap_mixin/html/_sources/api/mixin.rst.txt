@@ -10,6 +10,10 @@
 Mixin support library
 *********************
 
+.. |date| date::
+
+Last Updated on |date|
+
 .. doxygenfile:: mixin.h
    :sections: detaileddescription
 
