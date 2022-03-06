@@ -57,6 +57,9 @@ asap_create_module_config_files()
 # ------------------------------------------------------------------------------
 
 if(ASAP_BUILD_TESTS)
+  # Add support for (optional) code quality tools
+  asap_add_sanitizers(${MODULE_TARGET_NAME})
+
   add_subdirectory(test)
 endif()
 
