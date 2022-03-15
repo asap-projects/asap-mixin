@@ -210,25 +210,6 @@ if(ASAP_BUILD_TESTS)
 endif()
 
 # ------------------------------------------------------------------------------
-# RPATH setup
-# ------------------------------------------------------------------------------
-
-# Set runtime path
-set(CMAKE_SKIP_BUILD_RPATH FALSE) # Add absolute path to all dependencies for
-                                  # BUILD
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
-
-if(NOT SYSTEM_DIR_INSTALL)
-  # Find libraries relative to binary
-  if(APPLE)
-    set(CMAKE_INSTALL_RPATH "@loader_path/../../../${ASAP_INSTALL_LIB}")
-  else()
-    set(CMAKE_INSTALL_RPATH "$ORIGIN/${ASAP_INSTALL_LIB}")
-  endif()
-endif()
-
-# ------------------------------------------------------------------------------
 # Top level code generation
 # ------------------------------------------------------------------------------
 
