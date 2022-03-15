@@ -267,7 +267,7 @@
                 
   <div class="section" id="mixin-support-library">
 <h1>Mixin support library<a class="headerlink" href="#mixin-support-library" title="Permalink to this headline">¶</a></h1>
-<p>Last Updated on 2022-03-06</p>
+<p>Last Updated on 2022-03-15</p>
 <p>The idea with mix-ins is to provide a bunch of primitive classes, where each of them models a basic orthogonal concept, and be able to stick them together to compose more complex classes with just the functionality you want &amp;#8212; sort of like Lego. The primitive classes themselves are meant to be used as building blocks. This is extensible since later on you can add other primitive classes to the collection without affecting the existing ones.</p>
 <p>A technique for doing this in C++ is using templates and inheritance. The basic idea here is you connect these building blocks together by providing them via the template parameter. You then chain them together, eg. via typedef, to form a new type containing the functionality you want.</p>
 <p><strong>What’s a mixin</strong></p>
