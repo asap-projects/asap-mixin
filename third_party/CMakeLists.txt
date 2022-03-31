@@ -13,5 +13,5 @@ message("=> [third-party modules]")
 # asap::common
 # ------------------------------------------------------------------------------
 
-cpmaddpackage(NAME asap_common GIT_TAG v2.0.4 GITHUB_REPOSITORY
+cpmaddpackage(NAME asap_common GIT_TAG master GITHUB_REPOSITORY
               asap-projects/asap-common)
