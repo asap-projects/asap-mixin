@@ -29,16 +29,6 @@ NOTES:
 Make sure you have a C++ compiler with C++-17 capabilities at least. Gnu, Clang
 and MSVC all can do that with a recent version.
 
-## Enabling husky/commitlint/standard-version
-
-Only one time after the project is cloned, do the following:
-
-```bash
-npx husky install
-npm install -g @commitlint/cli @commitlint/config-conventional
-npm install -g standard-version
-```
-
 ## Building
 
 ```bash
@@ -65,7 +55,7 @@ option(ASAP_WITH_VALGRIND       "Builds targets with valgrind profilers added"  
 ## Making changes to this project
 
 Read the developer guides in the upstream
-[asap](https://abdes.github.io/asap/master/html/)
+[asap](https://abdes.github.io/asap/asap_master/html/)
 project. If you're in a hurry, at least do the following:
 
 Only one time after the project is cloned, do the following:
