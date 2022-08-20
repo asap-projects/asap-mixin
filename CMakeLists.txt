@@ -110,7 +110,6 @@ set(${PROJECT_NAME}_BUILD_EXAMPLES ${ASAP_BUILD_EXAMPLES})
 include(AsapTargets)
 include(BuildHelpers)
 include(GenerateExportHeader)
-include(CompileOptions)
 
 # Override the ${META_PROJECT_ID}_INSTALL option to ON/OFF to respectively force
 # install/no-install behavior for this project. This is particularly useful when
@@ -256,7 +255,7 @@ add_subdirectory(mixin)
 
 if(${META_PROJECT_ID}_IS_MASTER_PROJECT)
   include(ClangFormat)
-  include(ClangTidy)
+  # include(ClangTidy)
 
   # Enable this target when the project has header or source files (.h or .cpp)
   asap_setup_clang_format()
