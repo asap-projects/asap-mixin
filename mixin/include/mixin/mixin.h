@@ -123,8 +123,8 @@ template <typename MostDerived> struct MixinTop { /* not a mixin */
   // clang-format off
   auto self() & -> decltype(auto) { return static_cast<self_type &>(*this); }
   auto self() && -> decltype(auto) { return static_cast<self_type &&>(*this); }
-  auto self() const & -> decltype(auto) { return static_cast<self_type const &>(*this); }
-  auto self() const && -> decltype(auto) { return static_cast<self_type const &&>(*this); }
+  [[nodiscard]] auto self() const & -> decltype(auto) { return static_cast<self_type const &>(*this); }
+  [[nodiscard]] auto self() const && -> decltype(auto) { return static_cast<self_type const &&>(*this); }
   // clang-format on
 };
 

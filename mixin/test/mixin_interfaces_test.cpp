@@ -4,23 +4,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //===----------------------------------------------------------------------===//
 
-#include <mixin/mixin.h>
-
-#include <common/compilers.h>
+#include "mixin/mixin.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-
-// Disable compiler and linter warnings originating from the unit test framework
-// and for which we cannot do anything. Additionally, every TEST or TEST_X macro
-// usage must be preceded by a '// NOLINTNEXTLINE'.
-ASAP_DIAGNOSTIC_PUSH
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wused-but-marked-unused"
-#pragma clang diagnostic ignored "-Wglobal-constructors"
-#pragma clang diagnostic ignored "-Wunused-member-function"
-#endif
-// NOLINTBEGIN(used-but-marked-unused)
 
 using testing::NotNull;
 
@@ -37,7 +24,7 @@ struct Interface {
   auto operator=(const Interface &) -> Interface & = default;
   auto operator=(Interface &&) noexcept -> Interface & = default;
 
-  virtual void foo() = 0;
+  [[maybe_unused]] virtual void foo() = 0;
 };
 //! [Virtual interface]
 
@@ -82,6 +69,3 @@ TEST(MixinInterfaces, MixinCanProvideInterface) {
 } // namespace
 
 } // namespace asap::mixin
-
-// NOLINTEND(used-but-marked-unused)
-ASAP_DIAGNOSTIC_POP

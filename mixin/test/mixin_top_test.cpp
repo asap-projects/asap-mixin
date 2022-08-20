@@ -4,28 +4,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //===----------------------------------------------------------------------===//
 
-#include <mixin/mixin.h>
+#include "mixin/mixin.h"
 
-#include <common/compilers.h>
+#include <sstream>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include <sstream>
-
-// Disable compiler and linter warnings originating from the unit test framework
-// and for which we cannot do anything. Additionally, every TEST or TEST_X macro
-// usage must be preceded by a '// NOLINTNEXTLINE'.
-ASAP_DIAGNOSTIC_PUSH
-#if defined(__clang__) && ASAP_HAS_WARNING("-Wused-but-marked-unused")
-#pragma clang diagnostic ignored "-Wused-but-marked-unused"
-#pragma clang diagnostic ignored "-Wglobal-constructors"
-#pragma clang diagnostic ignored "-Wunused-member-function"
-#endif
-// NOLINTBEGIN(used-but-marked-unused)
-
 using testing::Eq;
-using testing::IsTrue;
 
 namespace asap::mixin {
 
@@ -69,13 +55,10 @@ TEST(MixinSelf, CompositionOrderDoesNotMatter) {
   struct Concrete2 : Mixin<Concrete2, WithLogging, Persistence> {};
   //! [Composition order does not matter]
 
-  [[maybe_unused]] Concrete1 concreate_1;
+  [[maybe_unused]] Concrete1 concrete_1;
   [[maybe_unused]] Concrete2 concrete_2;
 }
 
 } // namespace
 
 } // namespace asap::mixin
-
-// NOLINTEND(used-but-marked-unused)
-ASAP_DIAGNOSTIC_POP
