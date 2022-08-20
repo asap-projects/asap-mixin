@@ -366,7 +366,7 @@ title="Print to PDF"
                 
   <section id="mixin-support-library">
 <h1>Mixin support library<a class="headerlink" href="#mixin-support-library" title="Permalink to this headline">#</a></h1>
-<p>Last Updated on 2022-08-11</p>
+<p>Last Updated on 2022-08-20</p>
 <p>The idea with mix-ins is to provide a bunch of primitive classes, where each of them models a basic orthogonal concept, and be able to stick them together to compose more complex classes with just the functionality you want &amp;#8212; sort of like Lego. The primitive classes themselves are meant to be used as building blocks. This is extensible since later on you can add other primitive classes to the collection without affecting the existing ones.</p>
 <p>A technique for doing this in C++ is using templates and inheritance. The basic idea here is you connect these building blocks together by providing them via the template parameter. You then chain them together, eg. via typedef, to form a new type containing the functionality you want.</p>
 <p><strong>What’s a mixin</strong></p>
@@ -515,7 +515,7 @@ composite.</p>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Interface</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Interface</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Interface</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Interface</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">[[</span><span class="n">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
