@@ -1,10 +1,10 @@
-# ===-----------------------------------------------------------------------===#
+# ===------------------------------------------------------------------------===#
 # Distributed under the 3-Clause BSD License. See accompanying file LICENSE or
 # copy at https://opensource.org/licenses/BSD-3-Clause).
 # SPDX-License-Identifier: BSD-3-Clause
-# ===-----------------------------------------------------------------------===#
+# ===------------------------------------------------------------------------===#
 
-set(my_name "mixin")
+set(my_name "version-info")
 asap_push_module("${my_name}")
 
 # ------------------------------------------------------------------------------
@@ -15,72 +15,55 @@ asap_declare_module(
   MODULE_NAME
   "${my_name}"
   DESCRIPTION
-  "Mixin support library for C++"
+  "Print the project's version information."
   GITHUB_REPO
-  "https://github.com/asap-projects/mixin"
+  "${META_GITHUB_REPO}"
   AUTHOR_MAINTAINER
-  "Abdessattar Sassi"
+  "${META_AUTHOR_MAINTAINER}"
   VERSION_MAJOR
   "1"
   VERSION_MINOR
   "0"
   VERSION_PATCH
-  "3")
+  "0")
 
 # ==============================================================================
 # Build instructions
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
+# Code generation
+# ------------------------------------------------------------------------------
+
+# Generate version-header
+configure_file(src/main.cpp.in ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+
+# ------------------------------------------------------------------------------
 # Main module target
 # ------------------------------------------------------------------------------
 
-set(MODULE_TARGET_NAME "asap_mixin")
+set(MODULE_TARGET_NAME "${META_PROJECT_NAME}-${META_MODULE_NAME}")
 
-asap_add_library(${MODULE_TARGET_NAME} INTERFACE WARNING)
+asap_add_executable(${MODULE_TARGET_NAME} WARNING SOURCES "src/main.cpp")
 
+target_compile_features(${MODULE_TARGET_NAME} PUBLIC cxx_constexpr)
+
+target_compile_features(${MODULE_TARGET_NAME} PUBLIC cxx_constexpr)
+cmake_path(SET version_include_dir ${CMAKE_CURRENT_BINARY_DIR}/../../include
+           NORMALIZE)
 target_include_directories(
   ${MODULE_TARGET_NAME}
-  INTERFACE $<INSTALL_INTERFACE:include>
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
-
-target_compile_features(${MODULE_TARGET_NAME} INTERFACE cxx_std_17)
-
-# mixin comes directly from asap and is usually kept as is. It is more
-# convenient to simply use it as asap::mixin
-add_library(asap::${META_MODULE_NAME} ALIAS ${MODULE_TARGET_NAME})
-
-# Generate module config files for cmake and pkgconfig
-asap_create_module_config_files()
+  PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${version_include_dir}>
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # ------------------------------------------------------------------------------
-# Tests
+# Run executable test
 # ------------------------------------------------------------------------------
 
-if(ASAP_BUILD_TESTS)
-  # Add support for (optional) code quality tools
-  asap_add_sanitizers(${MODULE_TARGET_NAME})
-
-  add_subdirectory(test)
-endif()
-
-# ------------------------------------------------------------------------------
-# API Documentation
-# ------------------------------------------------------------------------------
-
-asap_with_doxygen(
-  MODULE_NAME
-  ${MODULE_TARGET_NAME}
-  VERSION
-  ${META_MODULE_VERSION}
-  TITLE
-  "\"Mixin Module\""
-  BRIEF
-  "\"Provides a support library for implementing mixins in C++.\""
-  INPUT_PATH
-  "${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-asap_with_sphinx(${MODULE_TARGET_NAME})
+add_test(
+  NAME version-info
+  COMMAND ${MODULE_TARGET_NAME}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
 # ==============================================================================
 # Deployment instructions
@@ -91,35 +74,14 @@ if(${META_PROJECT_ID}_INSTALL)
   set(runtime "${MODULE_TARGET_NAME}_runtime")
   set(dev "${MODULE_TARGET_NAME}_dev")
 
-  # Library
+  # Binaries
   install(
     TARGETS ${MODULE_TARGET_NAME}
     EXPORT "${TARGETS_EXPORT_NAME}"
-    COMPONENT dev
+    COMPONENT runtime
     RUNTIME DESTINATION ${ASAP_INSTALL_BIN} COMPONENT ${runtime}
     LIBRARY DESTINATION ${ASAP_INSTALL_SHARED} COMPONENT ${runtime}
     ARCHIVE DESTINATION ${ASAP_INSTALL_LIB} COMPONENT ${dev})
-
-  # Header files
-  install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/${META_MODULE_NAME}
-    DESTINATION ${ASAP_INSTALL_INCLUDE}
-    COMPONENT ${dev}
-    FILES_MATCHING
-    PATTERN "*.h")
-
-  # Target config
-  install(
-    EXPORT ${TARGETS_EXPORT_NAME}
-    NAMESPACE ${META_PROJECT_NAME}::
-    DESTINATION ${ASAP_INSTALL_CMAKE}/${META_MODULE_NAME}
-    COMPONENT ${dev})
-
-  # Package configuration files
-  install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_TARGET_NAME}Config.cmake
-          ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_TARGET_NAME}ConfigVersion.cmake
-    DESTINATION ${ASAP_INSTALL_CMAKE}/${META_MODULE_NAME})
 
   # Docs
   if(EXISTS ${SPHINX_BUILD_DIR}/${MODULE_TARGET_NAME})
