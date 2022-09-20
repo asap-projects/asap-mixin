@@ -120,17 +120,8 @@ git config remote.upstream.tagopt --no-tags
   appropriate
 
 [build-matrix]: https://github.com/asap-projects/asap-mixin/actions/workflows/cmake-build.yml?branch=master
-[build-status-develop-badge]: https://github.com/asap-projects/asap-mixin/actions/workflows/cmake-build.yml/badge.svg?branch=develop
 [build-status-master-badge]: https://github.com/asap-projects/asap-mixin/actions/workflows/cmake-build.yml/badge.svg?branch=master
-[cleanup-thumb]: https://asciinema.org/a/JOXq0l9CLZMolNcGhOnc84tNO.svg
-[cleanup-video]: https://asciinema.org/a/JOXq0l9CLZMolNcGhOnc84tNO?autoplay=1
 [commits]: https://github.com/asap-projects/asap-mixin/commits
-[customize-thumb]: https://cdn.loom.com/sessions/thumbnails/bedff4e1532441a6af6497653e52cede-with-play.gif
-[customize-video]: https://www.loom.com/embed/bedff4e1532441a6af6497653e52cede
-[from-template-thumb]: https://cdn.loom.com/sessions/thumbnails/087f217b73454728900baa8b1487f358-with-play.gif
-[from-template-video]: https://www.loom.com/embed/087f217b73454728900baa8b1487f358
-[hello-world-thumb]: https://cdn.loom.com/sessions/thumbnails/ff20f1771a6d448c8fd7b6e53e117c93-with-play.gif
-[hello-world-video]: https://www.loom.com/embed/ff20f1771a6d448c8fd7b6e53e117c93
 [last-commit-badge]: https://img.shields.io/github/last-commit/asap-projects/asap-mixin
 [latest-release]: https://github.com/asap-projects/asap-mixin/releases/latest
 [license-badge]: https://img.shields.io/github/license/asap-projects/asap-mixin
@@ -139,8 +130,5 @@ git config remote.upstream.tagopt --no-tags
 [macos-badge]: https://img.shields.io/badge/OS-macOS-blue
 [openssf-badge]: https://bestpractices.coreinfrastructure.org/projects/5921/badge
 [openssf-project]: https://bestpractices.coreinfrastructure.org/projects/5921
-[project-docs-thumb]: https://cdn.loom.com/sessions/thumbnails/131bd53f1a004387b09bbeeb80a41f3e-with-play.gif
-[project-docs-video]: https://www.loom.com/embed/131bd53f1a004387b09bbeeb80a41f3e
-[project-docs]: https://abdes.github.io/asap/asap_master/html/index.html
 [release-badge]: https://img.shields.io/github/v/release/asap-projects/asap-mixin
 [windows-badge]: https://img.shields.io/badge/OS-windows-blue
