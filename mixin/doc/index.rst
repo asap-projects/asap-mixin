@@ -1,6 +1,14 @@
-###########################
-ASAP common's documentation
-###########################
+.. Structure conventions
+     # with overline, for parts
+     * with overline, for chapters
+     = for sections
+     - for subsections
+     ^ for sub-subsections
+     " for paragraphs
+
+###############################
+ASAP mixin module documentation
+###############################
 
 .. |date| date::
 
@@ -22,6 +30,6 @@ Parts of the documentation
 ==========================
 
 :doc:`API reference <api>`
-------------------------------
+--------------------------
 *check this out to see the documentation of classes, macros, etc. offered by
 this module*
