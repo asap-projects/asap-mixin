@@ -6,9 +6,9 @@
      ^ for sub-subsections
      " for paragraphs
 
-*********************
-Mixin support library
-*********************
+*************
+Mixin library
+*************
 
 .. |date| date::
 

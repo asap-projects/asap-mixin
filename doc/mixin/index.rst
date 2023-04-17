@@ -6,9 +6,9 @@
      ^ for sub-subsections
      " for paragraphs
 
-###############################
-ASAP mixin module documentation
-###############################
+#############
+Module: mixin
+#############
 
 .. |date| date::
 
@@ -19,12 +19,8 @@ Last Updated on |date|
    :hidden:
 
    API <api>
-   License <license>
-   Version <version>
 
-Welcome! This is the documentation for the *mixin* module, part of the *asap*
-project. This is a header-only library to provide support for implementing
-mixins in C++.
+This is a header-only library to provide support for implementing mixins in C++.
 
 Parts of the documentation
 ==========================
